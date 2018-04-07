@@ -1,0 +1,31 @@
+<div class="container top30">
+    <div class="row">
+        <div class="col-md-3">
+            <label for="term">Search your idol</label>
+            <input type="text" class="form-control" placeholder="Search an artist" [(ngModel)]="term" (keyup.enter)="searchArtist()">
+        </div>
+        <div class="col-md-9" *ngIf="term.length >= 1">
+            <h1>Results for ... <small class="text-capitalize"><i>{{ term }}</i></small></h1>
+            <hr>
+
+            <div class="row text-center">
+                <div class="col-md-3 top30 puntero" *ngFor=" let artist of this.spotify.artists " [routerLink]="['/artist', artist.id]">
+                    <img [src]="artist.images | fotos" [alt]="artist.name" class="img-thumbnail">
+                    <p>{{ artist.name }}</p>
+                </div>
+            </div>
+            <!-- 
+            <ul *ngIf="this.spotify.artists.length > 0">
+
+
+
+                <li *ngFor=" let artist of this.spotify.artists ">
+                    {{ artist.name }}
+                </li>
+            </ul>
+            <div *ngIf="this.spotify.artists.length === 0 && this.searching" class="alert alert-info">
+                <p> No se encontraron resultados con el término : {{ term }}</p>
+            </div> -->
+        </div>
+    </div>
+</div>
